@@ -31,13 +31,30 @@ public class CartTest extends BaseTest {
 		switchToChildBrowser();
 		productDetailPage = new ProductDetailPage(driver);
 		String ExpectedName = productDetailPage.getProductName();
-		String ExpectedPrice = productDetailPage.getProductPrice();
-		String ExpectedShippingPrice = productDetailPage.getShippingPrice();
+		double ExpectedPrice = productDetailPage.getProductPrice();
+		double ExpectedShippingPrice = productDetailPage.getShippingPrice();
 		productDetailPage.clickOnBuyButton();
 		cartPage =new CartPage(driver);
 		Assert.assertEquals(cartPage.getNumberOfProductsInCart(), 1);
 		Assert.assertEquals(cartPage.getProductName(0), ExpectedName);
 		Assert.assertEquals(cartPage.getProductPrice(1), ExpectedPrice);
 		Assert.assertEquals(cartPage.getShippingPrice(1), ExpectedShippingPrice);	
+	}
+	
+	
+	@Test
+	public void verifyAmountsInCart() {
+		naptolHomePage =new NaptolHomePage(driver);
+		naptolHomePage.enterProductToSearch("cooker");
+		naptolHomePage.clickOnSearch();
+		productResultPage = new ProductResultPage(driver);
+		productResultPage.selectDesiredProduct(0);
+		switchToChildBrowser();
+		productDetailPage = new ProductDetailPage(driver);
+		productDetailPage.clickOnBuyButton();
+		cartPage = new CartPage(driver);
+		Assert.assertEquals(cartPage.getOrderAmount(1), (cartPage.getProductPrice(1)+cartPage.getShippingPrice(1)));
+		
+		
 	}
 }

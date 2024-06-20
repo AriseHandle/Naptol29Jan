@@ -5,7 +5,7 @@
     <classes>
       <class name="test.CartTest">
         <methods>
-          <include name="verifyAddToCartFromOrderDeatils"/>
+          <include name="verifyAmountsInCart"/>
           <include name="openApplication"/>
         </methods>
       </class> <!-- test.CartTest -->

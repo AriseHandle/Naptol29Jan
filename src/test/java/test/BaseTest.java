@@ -25,4 +25,6 @@ public class BaseTest {
 		driver.switchTo().window(i.next());
 		driver.switchTo().window(i.next());
 	}
+	
+	
 }

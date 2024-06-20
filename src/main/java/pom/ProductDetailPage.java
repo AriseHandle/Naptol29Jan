@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ProductDetailPage {
+public class ProductDetailPage extends BasePage{
 
 	@FindBy (xpath = "//div[@id='square_Details']//h1")private WebElement productNameOnQuickView;
 	@FindBy (xpath = "//div[@id='square_Details']//span[@class='offer-price']")private WebElement productPriceOnQuickView;
@@ -19,14 +19,14 @@ public class ProductDetailPage {
 		return productNameOnQuickView.getText();
 	}
 	
-	public String getProductPrice() {
+	public double getProductPrice() {
 		String [] p =	productPriceOnQuickView.getText().split(" ");
-		return p[0];
+		return Double.parseDouble(removeCommaFromString(p[0]));
 	}
 	
-	public String getShippingPrice() {
+	public double getShippingPrice() {
 		String [] p =	productPriceOnQuickView.getText().split(" ");
-		return p[2];
+		return Double.parseDouble(removeCommaFromString(p[2]));
 	}
 	
 	public void clickOnBuyButton() {
